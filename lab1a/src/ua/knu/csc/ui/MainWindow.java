@@ -1,9 +1,14 @@
 package ua.knu.csc.ui;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ChangeListener {
+
+    private JSlider slider = new JSlider();
+    private JLabel label = new JLabel();
 
     public MainWindow() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -11,12 +16,12 @@ public class MainWindow extends JFrame {
 
         add(new JButton("Start"));
 
-        JSlider slider = new JSlider();
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setMajorTickSpacing(10);
+        slider.addChangeListener(this);
 
-        JLabel label = new JLabel("value: " + slider.getValue());
+        label.setText("value: " + slider.getValue());
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         Box box = Box.createVerticalBox();
@@ -27,5 +32,10 @@ public class MainWindow extends JFrame {
         add(box);
 
         pack();
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        label.setText("value: " + slider.getValue());
     }
 }
