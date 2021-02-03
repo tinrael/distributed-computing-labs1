@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class MainWindow extends JFrame implements ChangeListener {
 
-    private JSlider slider = new JSlider();
-    private JLabel label = new JLabel();
+    private final JSlider slider = new JSlider();
+    private final JLabel label = new JLabel();
 
     public MainWindow() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
