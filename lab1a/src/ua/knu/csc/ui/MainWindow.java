@@ -1,21 +1,39 @@
 package ua.knu.csc.ui;
 
+import java.awt.*;
+
 import javax.swing.*;
+
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
 
 public class MainWindow extends JFrame implements ChangeListener {
 
     private final JSlider slider = new JSlider();
     private final JLabel label = new JLabel();
 
-    public MainWindow() {
+    public MainWindow(String title) {
+        super(title);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
+
+        JPanel viewPanel = createViewPanel();
+        JPanel controlPanel = createControlPanel();
+
+        Container container = Box.createVerticalBox();
+        container.add(viewPanel);
+        container.add(controlPanel);
+
+        add(container);
+        pack();
+    }
+
+    private JPanel createViewPanel() {
+        JPanel viewPanel = new JPanel(new FlowLayout());
 
         JPanel labeledSpinner1 = new JPanel(new FlowLayout());
         labeledSpinner1.add(new JLabel("Thread 1:"));
@@ -35,24 +53,31 @@ public class MainWindow extends JFrame implements ChangeListener {
         priorityBox.add(Box.createVerticalStrut(5));
         priorityBox.add(buttonSet);
 
-        add(priorityBox);
+        label.setText("value: " + slider.getValue());
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setMajorTickSpacing(10);
         slider.addChangeListener(this);
 
-        label.setText("value: " + slider.getValue());
-        label.setAlignmentX(Component.CENTER_ALIGNMENT);
-
         Box sliderBox = Box.createVerticalBox();
         sliderBox.add(label);
         sliderBox.add(Box.createVerticalStrut(10));
         sliderBox.add(slider);
 
-        add(sliderBox);
+        viewPanel.add(priorityBox);
+        viewPanel.add(sliderBox);
 
-        pack();
+        return viewPanel;
+    }
+
+    private JPanel createControlPanel() {
+        JPanel controlPanel = new JPanel(new FlowLayout());
+
+        controlPanel.add(new JButton("Start"));
+
+        return controlPanel;
     }
 
     @Override
