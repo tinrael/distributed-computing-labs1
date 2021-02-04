@@ -1,6 +1,8 @@
 package ua.knu.csc.ui;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -23,21 +25,17 @@ public class MainWindow extends JFrame implements ChangeListener {
         labeledSpinner2.add(new JLabel("Thread 2:"));
         labeledSpinner2.add(new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1)));
 
-        Box labeledSpinnersBox = Box.createVerticalBox();
-        labeledSpinnersBox.setBorder(new TitledBorder("Priority"));
-        labeledSpinnersBox.add(labeledSpinner1);
-        labeledSpinnersBox.add(labeledSpinner2);
+        JButton buttonSet = new JButton("Set");
+        buttonSet.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        Box controlPanelBox = Box.createVerticalBox();
-        controlPanelBox.add(labeledSpinnersBox);
-        controlPanelBox.add(Box.createVerticalStrut(10));
+        Box priorityBox = Box.createVerticalBox();
+        priorityBox.setBorder(new CompoundBorder(new TitledBorder("Priority"), new EmptyBorder(5, 5, 5, 5)));
+        priorityBox.add(labeledSpinner1);
+        priorityBox.add(labeledSpinner2);
+        priorityBox.add(Box.createVerticalStrut(5));
+        priorityBox.add(buttonSet);
 
-        JButton buttonStart = new JButton("Start");
-        buttonStart.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        controlPanelBox.add(buttonStart);
-
-        add(controlPanelBox);
+        add(priorityBox);
 
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
@@ -47,12 +45,12 @@ public class MainWindow extends JFrame implements ChangeListener {
         label.setText("value: " + slider.getValue());
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        Box box = Box.createVerticalBox();
-        box.add(label);
-        box.add(Box.createVerticalStrut(10));
-        box.add(slider);
+        Box sliderBox = Box.createVerticalBox();
+        sliderBox.add(label);
+        sliderBox.add(Box.createVerticalStrut(10));
+        sliderBox.add(slider);
 
-        add(box);
+        add(sliderBox);
 
         pack();
     }
