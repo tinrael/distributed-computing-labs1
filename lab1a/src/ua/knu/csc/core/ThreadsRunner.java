@@ -3,6 +3,8 @@ package ua.knu.csc.core;
 import ua.knu.csc.ui.MainWindow;
 
 public class ThreadsRunner {
+    private final long THREAD_DELAY = 1500000;
+
     private final MainWindow mainWindow;
 
     private Thread thread1;
@@ -23,6 +25,9 @@ public class ThreadsRunner {
             public void run() {
                 while (true) {
                     mainWindow.increaseSliderValueByOne();
+                    
+                    long threadDelay = THREAD_DELAY;
+                    while (threadDelay != 0) threadDelay--;
                 }
             }
         });
@@ -33,6 +38,9 @@ public class ThreadsRunner {
             public void run() {
                 while(true) {
                     mainWindow.decreaseSliderValueByOne();
+
+                    long threadDelay = THREAD_DELAY;
+                    while (threadDelay != 0) threadDelay--;
                 }
             }
         });
