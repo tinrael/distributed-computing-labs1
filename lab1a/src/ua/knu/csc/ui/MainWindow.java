@@ -18,8 +18,8 @@ import javax.swing.event.ChangeListener;
 public class MainWindow extends JFrame implements ChangeListener, ActionListener {
     private ThreadsRunner threadsRunner;
 
-    private JSpinner spinnerThread1 = new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1));
-    private JSpinner spinnerThread2 = new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1));
+    private final JSpinner spinnerThread1 = new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1));
+    private final JSpinner spinnerThread2 = new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1));
 
     private final JLabel label = new JLabel();
     private final JSlider slider = new JSlider();
