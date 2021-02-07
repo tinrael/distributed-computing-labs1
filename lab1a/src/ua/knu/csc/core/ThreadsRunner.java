@@ -3,7 +3,7 @@ package ua.knu.csc.core;
 import ua.knu.csc.ui.MainWindow;
 
 public class ThreadsRunner {
-    private final long THREAD_DELAY = 1500000;
+    private final long THREAD_DELAY = 2000000;
 
     private final MainWindow mainWindow;
 
@@ -24,27 +24,33 @@ public class ThreadsRunner {
             @Override
             public void run() {
                 while (true) {
-                    mainWindow.increaseSliderValueByOne();
-                    
-                    long threadDelay = THREAD_DELAY;
-                    while (threadDelay != 0) threadDelay--;
+                    if (mainWindow.getSliderValue() < 90) {
+                        mainWindow.increaseSliderValueByOne();
+                        
+                        long threadDelay = THREAD_DELAY;
+                        while (threadDelay != 0) threadDelay--;
+                    }
                 }
             }
         });
         thread1.setName("Thread-1");
+        thread1.setDaemon(true);
 
         thread2 = new Thread(new Runnable() {
             @Override
             public void run() {
                 while(true) {
-                    mainWindow.decreaseSliderValueByOne();
+                    if (mainWindow.getSliderValue() > 10) {
+                        mainWindow.decreaseSliderValueByOne();
 
-                    long threadDelay = THREAD_DELAY;
-                    while (threadDelay != 0) threadDelay--;
+                        long threadDelay = THREAD_DELAY;
+                        while (threadDelay != 0) threadDelay--;
+                    }
                 }
             }
         });
         thread2.setName("Thread-2");
+        thread2.setDaemon(true);
     }
 
     public void startThreads() {
