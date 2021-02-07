@@ -112,11 +112,13 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
         slider.setValue(slider.getValue() - 1);
     }
 
+    // This method is called every time the value in a slider is changed.
     @Override
     public void stateChanged(ChangeEvent e) {
         label.setText("value: " + slider.getValue());
     }
 
+    // This method is called every time the button "Set" is clicked.
     @Override
     public void actionPerformed(ActionEvent e) {
         buttonStart.setEnabled(false);
