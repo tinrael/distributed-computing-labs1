@@ -24,9 +24,9 @@ public class ThreadsRunner {
             @Override
             public void run() {
                 while (true) {
-                    if (mainWindow.getSliderValue() < 90) {
-                        mainWindow.increaseSliderValueByOne();
-                        
+                    if (mainWindow.getSliderValue() > 10) {
+                        mainWindow.decreaseSliderValueByOne();
+
                         long threadDelay = THREAD_DELAY;
                         while (threadDelay != 0) threadDelay--;
                     }
@@ -40,8 +40,8 @@ public class ThreadsRunner {
             @Override
             public void run() {
                 while(true) {
-                    if (mainWindow.getSliderValue() > 10) {
-                        mainWindow.decreaseSliderValueByOne();
+                    if (mainWindow.getSliderValue() < 90) {
+                        mainWindow.increaseSliderValueByOne();
 
                         long threadDelay = THREAD_DELAY;
                         while (threadDelay != 0) threadDelay--;
