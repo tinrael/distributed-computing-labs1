@@ -43,6 +43,8 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
         container.add(controlPanel);
 
         add(container);
+
+        threadsRunner = new ThreadsRunner(this, (int) spinnerThread1.getValue(), (int) spinnerThread2.getValue());
     }
 
     private JPanel createViewPanel() {
@@ -57,6 +59,13 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
         labeledSpinner2.add(spinnerThread2);
 
         JButton buttonSet = new JButton("Set");
+        buttonSet.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                threadsRunner.setPriorityThread1((int) spinnerThread1.getValue());
+                threadsRunner.setPriorityThread2((int) spinnerThread2.getValue());
+            }
+        });
         buttonSet.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         Box priorityBox = Box.createVerticalBox();
@@ -111,8 +120,6 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         buttonStart.setEnabled(false);
-
-        threadsRunner = new ThreadsRunner(this, (int) spinnerThread1.getValue(), (int) spinnerThread2.getValue());
 
         spinnerThread1.addChangeListener(new ChangeListener() {
             @Override
