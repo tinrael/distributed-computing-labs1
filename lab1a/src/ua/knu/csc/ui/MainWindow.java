@@ -1,6 +1,8 @@
 package ua.knu.csc.ui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -11,10 +13,12 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class MainWindow extends JFrame implements ChangeListener {
+public class MainWindow extends JFrame implements ChangeListener, ActionListener {
 
-    private final JSlider slider = new JSlider();
     private final JLabel label = new JLabel();
+    private final JSlider slider = new JSlider();
+
+    private final JButton buttonStart = new JButton("Start");
 
     public MainWindow(String title) {
         super(title);
@@ -78,7 +82,9 @@ public class MainWindow extends JFrame implements ChangeListener {
     private JPanel createControlPanel() {
         JPanel controlPanel = new JPanel(new FlowLayout());
 
-        controlPanel.add(new JButton("Start"));
+        buttonStart.addActionListener(this);
+
+        controlPanel.add(buttonStart);
 
         return controlPanel;
     }
@@ -86,5 +92,10 @@ public class MainWindow extends JFrame implements ChangeListener {
     @Override
     public void stateChanged(ChangeEvent e) {
         label.setText("value: " + slider.getValue());
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        buttonStart.setEnabled(false);
     }
 }
