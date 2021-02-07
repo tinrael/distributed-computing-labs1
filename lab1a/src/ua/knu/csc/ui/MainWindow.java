@@ -1,5 +1,7 @@
 package ua.knu.csc.ui;
 
+import ua.knu.csc.core.ThreadsRunner;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame implements ChangeListener, ActionListener {
+    private ThreadsRunner threadsRunner;
+
+    private JSpinner spinnerThread1 = new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1));
+    private JSpinner spinnerThread2 = new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1));
 
     private final JLabel label = new JLabel();
     private final JSlider slider = new JSlider();
@@ -44,11 +50,11 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
 
         JPanel labeledSpinner1 = new JPanel(new FlowLayout());
         labeledSpinner1.add(new JLabel("Thread 1:"));
-        labeledSpinner1.add(new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1)));
+        labeledSpinner1.add(spinnerThread1);
 
         JPanel labeledSpinner2 = new JPanel(new FlowLayout());
         labeledSpinner2.add(new JLabel("Thread 2:"));
-        labeledSpinner2.add(new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1)));
+        labeledSpinner2.add(spinnerThread2);
 
         JButton buttonSet = new JButton("Set");
         buttonSet.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -105,5 +111,8 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         buttonStart.setEnabled(false);
+
+        threadsRunner = new ThreadsRunner(this, (int) spinnerThread1.getValue(), (int) spinnerThread2.getValue());
+        threadsRunner.startThreads();
     }
 }
