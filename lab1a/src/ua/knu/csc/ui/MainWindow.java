@@ -16,7 +16,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class MainWindow extends JFrame implements ChangeListener, ActionListener {
-    private ThreadsRunner threadsRunner;
+    private final ThreadsRunner threadsRunner;
 
     private final JSpinner spinnerThread1 = new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1));
     private final JSpinner spinnerThread2 = new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1));
