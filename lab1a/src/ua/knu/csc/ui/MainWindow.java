@@ -118,7 +118,7 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
         label.setText("value: " + slider.getValue());
     }
 
-    // This method is called every time the button "Set" is clicked.
+    // This method is called every time the button "Start" is clicked.
     @Override
     public void actionPerformed(ActionEvent e) {
         buttonStart.setEnabled(false);
