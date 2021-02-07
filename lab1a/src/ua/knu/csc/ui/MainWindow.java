@@ -104,11 +104,11 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
         return controlPanel;
     }
 
-    public void increaseSliderValueByOne() {
+    public synchronized void increaseSliderValueByOne() {
         slider.setValue(slider.getValue() + 1);
     }
 
-    public void decreaseSliderValueByOne() {
+    public synchronized void decreaseSliderValueByOne() {
         slider.setValue(slider.getValue() - 1);
     }
 
