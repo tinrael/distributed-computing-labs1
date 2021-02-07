@@ -112,6 +112,10 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
         slider.setValue(slider.getValue() - 1);
     }
 
+    public synchronized int getSliderValue() {
+        return slider.getValue();
+    }
+
     // This method is called every time the value in a slider is changed.
     @Override
     public void stateChanged(ChangeEvent e) {
