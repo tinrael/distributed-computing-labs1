@@ -21,16 +21,22 @@ public class ThreadsRunner {
         thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
-
+                while (true) {
+                    mainWindow.increaseSliderValueByOne();
+                }
             }
         });
+        thread1.setName("Thread-1");
 
         thread2 = new Thread(new Runnable() {
             @Override
             public void run() {
-
+                while(true) {
+                    mainWindow.decreaseSliderValueByOne();
+                }
             }
         });
+        thread2.setName("Thread-2");
     }
 
     public void startThreads() {
@@ -39,10 +45,12 @@ public class ThreadsRunner {
     }
 
     public void setPriorityThread1(int newPriority) {
+        System.out.println("[ThreadsRunner]: Set " + thread1.getName() + " priority to " + newPriority + ".");
         thread1.setPriority(newPriority);
     }
 
     public void setPriorityThread2(int newPriority) {
+        System.out.println("[ThreadsRunner]: Set " + thread2.getName() + " priority to " + newPriority + ".");
         thread2.setPriority(newPriority);
     }
 }
