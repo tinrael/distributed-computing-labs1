@@ -121,20 +121,6 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
     public void actionPerformed(ActionEvent e) {
         buttonStart.setEnabled(false);
 
-        spinnerThread1.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                threadsRunner.setPriorityThread1((int) spinnerThread1.getValue());
-            }
-        });
-
-        spinnerThread2.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                threadsRunner.setPriorityThread2((int) spinnerThread2.getValue());
-            }
-        });
-
         threadsRunner.startThreads();
     }
 }
