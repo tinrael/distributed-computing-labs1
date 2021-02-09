@@ -1,5 +1,6 @@
 package ua.knu.csc.ui;
 
+import ua.knu.csc.core.Slider;
 import ua.knu.csc.core.ThreadsRunner;
 
 import java.awt.*;
@@ -22,7 +23,7 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
     private final JSpinner spinnerThread2 = new JSpinner(new SpinnerNumberModel(Thread.NORM_PRIORITY, Thread.MIN_PRIORITY, Thread.MAX_PRIORITY, 1));
 
     private final JLabel label = new JLabel();
-    private final JSlider slider = new JSlider();
+    private final Slider slider = new Slider();
 
     private final JButton buttonStart = new JButton("Start");
 
@@ -44,7 +45,7 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
 
         add(container);
 
-        threadsRunner = new ThreadsRunner(this, (int) spinnerThread1.getValue(), (int) spinnerThread2.getValue());
+        threadsRunner = new ThreadsRunner(slider, (int) spinnerThread1.getValue(), (int) spinnerThread2.getValue());
     }
 
     private JPanel createViewPanel() {
@@ -78,9 +79,6 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
         label.setText("value: " + slider.getValue());
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
-        slider.setMajorTickSpacing(10);
         slider.addChangeListener(this);
 
         Box sliderBox = Box.createVerticalBox();
@@ -104,18 +102,6 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
         return controlPanel;
     }
 
-    public synchronized void increaseSliderValueByOne() {
-        slider.setValue(slider.getValue() + 1);
-    }
-
-    public synchronized void decreaseSliderValueByOne() {
-        slider.setValue(slider.getValue() - 1);
-    }
-
-    public synchronized int getSliderValue() {
-        return slider.getValue();
-    }
-
     // This method is called every time the value in a slider is changed.
     @Override
     public void stateChanged(ChangeEvent e) {
@@ -129,4 +115,5 @@ public class MainWindow extends JFrame implements ChangeListener, ActionListener
 
         threadsRunner.startThreads();
     }
+
 }

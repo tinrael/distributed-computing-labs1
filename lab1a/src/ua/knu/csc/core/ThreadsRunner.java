@@ -1,17 +1,15 @@
 package ua.knu.csc.core;
 
-import ua.knu.csc.ui.MainWindow;
-
 public class ThreadsRunner {
     private final long THREAD_DELAY = 2000000;
 
-    private final MainWindow mainWindow;
+    private final Slider slider;
 
     private Thread thread1;
     private Thread thread2;
 
-    public ThreadsRunner(MainWindow mainWindow, int priorityThread1, int priorityThread2) {
-        this.mainWindow = mainWindow;
+    public ThreadsRunner(Slider slider, int priorityThread1, int priorityThread2) {
+        this.slider = slider;
 
         createThreads();
 
@@ -24,8 +22,8 @@ public class ThreadsRunner {
             @Override
             public void run() {
                 while (true) {
-                    if (mainWindow.getSliderValue() > 10) {
-                        mainWindow.decreaseSliderValueByOne();
+                    if (slider.getValue() > 10) {
+                        slider.decreaseValueByOne();
 
                         long threadDelay = THREAD_DELAY;
                         while (threadDelay != 0) threadDelay--;
@@ -40,8 +38,8 @@ public class ThreadsRunner {
             @Override
             public void run() {
                 while(true) {
-                    if (mainWindow.getSliderValue() < 90) {
-                        mainWindow.increaseSliderValueByOne();
+                    if (slider.getValue() < 90) {
+                        slider.increaseValueByOne();
 
                         long threadDelay = THREAD_DELAY;
                         while (threadDelay != 0) threadDelay--;
@@ -67,4 +65,5 @@ public class ThreadsRunner {
         System.out.println("[ThreadsRunner]: Set " + thread2.getName() + " priority to " + newPriority + ".");
         thread2.setPriority(newPriority);
     }
+
 }
