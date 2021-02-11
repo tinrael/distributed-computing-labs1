@@ -14,4 +14,12 @@ public class BinarySemaphore {
         permits = 1;
         notify();
     }
+
+    public synchronized boolean tryAcquire() {
+        if (permits == 0) {
+            return false;
+        }
+        permits = 0;
+        return true;
+    }
 }
