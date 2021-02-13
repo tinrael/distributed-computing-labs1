@@ -5,13 +5,16 @@ public class BinarySemaphore {
 
     public synchronized void acquire() throws InterruptedException {
         while (permits == 0) {
+            System.out.println("[BinarySemaphore]: " + Thread.currentThread().getName() + " is waiting for the permit.");
             wait();
         }
         permits = 0;
+        System.out.println("[BinarySemaphore]: " + Thread.currentThread().getName() + " acquires a permit.");
     }
 
     public synchronized void release() {
         permits = 1;
+        System.out.println("[BinarySemaphore]: " + Thread.currentThread().getName() + " releases the permit.");
         notify();
     }
 
