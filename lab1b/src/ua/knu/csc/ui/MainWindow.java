@@ -8,6 +8,9 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import java.awt.*;
 
 public class MainWindow extends JFrame {
@@ -55,16 +58,23 @@ public class MainWindow extends JFrame {
         Dimension sliderPreferredSize = slider.getPreferredSize();
         slider.setPreferredSize(new Dimension(sliderPreferredSize.width + 100, sliderPreferredSize.height));
 
-        JPanel sliderViewPanel = new JPanel();
-        sliderViewPanel.setLayout(new FlowLayout());
-        sliderViewPanel.add(slider);
-
         JLabel sliderValueLabel = new JLabel(String.valueOf(slider.getValue()));
 
         JPanel sliderStatusBar = new JPanel();
         sliderStatusBar.setLayout(new FlowLayout());
         sliderStatusBar.add(new JLabel("value:"));
         sliderStatusBar.add(sliderValueLabel);
+
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                sliderValueLabel.setText(String.valueOf(slider.getValue()));
+            }
+        });
+
+        JPanel sliderViewPanel = new JPanel();
+        sliderViewPanel.setLayout(new FlowLayout());
+        sliderViewPanel.add(slider);
 
         viewBox.add(sliderStatusBar);
         viewBox.add(sliderViewPanel);
