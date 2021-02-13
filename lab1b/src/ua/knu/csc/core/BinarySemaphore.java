@@ -1,13 +1,11 @@
 package ua.knu.csc.core;
 
-import javax.swing.JLabel;
-
 public class BinarySemaphore {
-    private final JLabel statusBarText;
+    private final JLabelWrapper statusBarText;
 
     private int permits = 1;
 
-    public BinarySemaphore(JLabel statusBarText) {
+    public BinarySemaphore(JLabelWrapper statusBarText) {
         if (statusBarText == null) {
             throw new IllegalArgumentException("The null argument 'statusBarText' is not allowed.");
         }

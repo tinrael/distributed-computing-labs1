@@ -16,7 +16,7 @@ public class Manager {
     private final JButton buttonStart2;
     private final JButton buttonStop2;
 
-    public Manager(JSlider slider, JLabel statusBarText, JButton buttonStart1, JButton buttonStop1, JButton buttonStart2, JButton buttonStop2) {
+    public Manager(JSlider slider, JLabelWrapper statusBarText, JButton buttonStart1, JButton buttonStop1, JButton buttonStart2, JButton buttonStop2) {
         if (slider == null || statusBarText == null || buttonStart1 == null || buttonStop1 == null || buttonStart2 == null || buttonStop2 == null) {
             throw new IllegalArgumentException("The null arguments are not allowed.");
         }

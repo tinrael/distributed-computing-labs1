@@ -1,5 +1,6 @@
 package ua.knu.csc.ui;
 
+import ua.knu.csc.core.JLabelWrapper;
 import ua.knu.csc.core.Manager;
 
 import javax.swing.*;
@@ -22,7 +23,7 @@ public class MainWindow extends JFrame {
     private final JButton buttonStart2 = new JButton("Start 2");
     private final JButton buttonStop2 = new JButton("Stop 2");
 
-    private final JLabel statusBarText = new JLabel("ready");
+    private final JLabelWrapper statusBarText = new JLabelWrapper("ready");
 
     private final Manager manager = new Manager(slider, statusBarText, buttonStart1, buttonStop1, buttonStart2, buttonStop2);
 
