@@ -27,26 +27,27 @@ public class WorkerThread extends Thread {
     public void run() {
         try {
             binarySemaphore.acquire();
-
-            int currentSliderValue;
-            while (!isInterrupted()) {
-                currentSliderValue = slider.getValue();
-
-                if (currentSliderValue > targetSliderValue) {
-                    slider.setValue(currentSliderValue - 1);
-                } else if (currentSliderValue < targetSliderValue) {
-                    slider.setValue(currentSliderValue + 1);
-                } else {
-                    break;
-                }
-
-                long threadDelay = THREAD_DELAY;
-                while (threadDelay != 0) threadDelay--;
-            }
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            binarySemaphore.release();
+            System.err.println("[WorkerThread]: " + Thread.currentThread().getName() + " was interrupted while waiting for a permit.");
+            return;
         }
+
+        int currentSliderValue;
+        while (!isInterrupted()) {
+            currentSliderValue = slider.getValue();
+
+            if (currentSliderValue > targetSliderValue) {
+                slider.setValue(currentSliderValue - 1);
+            } else if (currentSliderValue < targetSliderValue) {
+                slider.setValue(currentSliderValue + 1);
+            } else {
+                break;
+            }
+
+            long threadDelay = THREAD_DELAY;
+            while (threadDelay != 0) threadDelay--;
+        }
+
+        binarySemaphore.release();
     }
 }
