@@ -28,7 +28,7 @@ public class WorkerThread extends Thread {
         try {
             binarySemaphore.acquire();
         } catch (InterruptedException e) {
-            System.err.println("[WorkerThread]: " + Thread.currentThread().getName() + " was interrupted while waiting for a permit.");
+            System.err.println("[WorkerThread]: " + Thread.currentThread().getName() + " was interrupted before or while was waiting for a permit.");
             return;
         }
 
