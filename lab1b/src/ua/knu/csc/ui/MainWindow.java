@@ -1,5 +1,7 @@
 package ua.knu.csc.ui;
 
+import ua.knu.csc.core.Manager;
+
 import javax.swing.*;
 
 import javax.swing.border.CompoundBorder;
@@ -18,6 +20,8 @@ public class MainWindow extends JFrame {
     private final JButton buttonStop2 = new JButton("Stop 2");
 
     private final JLabel statusBarText = new JLabel("ready");
+
+    private final Manager manager = new Manager(slider, buttonStart1, buttonStop1, buttonStart2, buttonStop2);
 
     public MainWindow(String title) {
         super(title);
