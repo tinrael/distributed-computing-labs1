@@ -3,7 +3,7 @@ package ua.knu.csc.core;
 import javax.swing.*;
 
 public class Manager {
-    private final BinarySemaphore binarySemaphore = new BinarySemaphore();
+    private final BinarySemaphore binarySemaphore;
 
     private WorkerThread workerThread1;
     private WorkerThread workerThread2;
@@ -16,10 +16,12 @@ public class Manager {
     private final JButton buttonStart2;
     private final JButton buttonStop2;
 
-    public Manager(JSlider slider, JButton buttonStart1, JButton buttonStop1, JButton buttonStart2, JButton buttonStop2) {
-        if (slider == null || buttonStart1 == null || buttonStop1 == null || buttonStart2 == null || buttonStop2 == null) {
+    public Manager(JSlider slider, JLabel statusBarText, JButton buttonStart1, JButton buttonStop1, JButton buttonStart2, JButton buttonStop2) {
+        if (slider == null || statusBarText == null || buttonStart1 == null || buttonStop1 == null || buttonStart2 == null || buttonStop2 == null) {
             throw new IllegalArgumentException("The null arguments are not allowed.");
         }
+
+        this.binarySemaphore = new BinarySemaphore(statusBarText);
 
         this.slider = slider;
 
