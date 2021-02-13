@@ -5,7 +5,7 @@ public class BinarySemaphore {
 
     public synchronized void acquire() throws InterruptedException {
         while (permits == 0) {
-            System.out.println("[BinarySemaphore]: " + Thread.currentThread().getName() + " is waiting for the permit.");
+            System.out.println("[BinarySemaphore]: No permit is available. " + Thread.currentThread().getName() + " is waiting for the permit.");
             wait();
         }
         permits = 0;
