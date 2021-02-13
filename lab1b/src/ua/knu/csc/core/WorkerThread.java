@@ -11,6 +11,10 @@ public class WorkerThread extends Thread {
     private final int targetSliderValue;
 
     public WorkerThread(BinarySemaphore binarySemaphore, JSlider slider, int targetSliderValue) {
+        if (binarySemaphore == null || slider == null) {
+            throw new IllegalArgumentException("The null arguments are not allowed.");
+        }
+
         this.binarySemaphore = binarySemaphore;
         this.slider = slider;
         this.targetSliderValue = targetSliderValue;
@@ -18,6 +22,11 @@ public class WorkerThread extends Thread {
 
     public WorkerThread(String name, BinarySemaphore binarySemaphore, JSlider slider, int targetSliderValue) {
         super(name);
+
+        if (binarySemaphore == null || slider == null) {
+            throw new IllegalArgumentException("The null 'binarySemaphore' or 'slider' arguments are not allowed.");
+        }
+
         this.binarySemaphore = binarySemaphore;
         this.slider = slider;
         this.targetSliderValue = targetSliderValue;
