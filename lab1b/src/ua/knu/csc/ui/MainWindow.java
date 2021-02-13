@@ -24,7 +24,7 @@ public class MainWindow extends JFrame {
 
     private final JLabel statusBarText = new JLabel("ready");
 
-    private final Manager manager = new Manager(slider, buttonStart1, buttonStop1, buttonStart2, buttonStop2);
+    private final Manager manager = new Manager(slider, statusBarText, buttonStart1, buttonStop1, buttonStart2, buttonStop2);
 
     public MainWindow(String title) {
         super(title);
