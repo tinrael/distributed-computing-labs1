@@ -32,22 +32,21 @@ public class MainWindow extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(screenSize.width / 2 - getSize().width / 2, screenSize.height / 2 - getSize().height / 2);
 
-        JPanel viewPanel = createViewPanel();
+        Box viewBox = createViewBox();
         JPanel statusBar = createStatusBar();
         JPanel controlPanel = createControlPanel();
 
         Container container = Box.createVerticalBox();
 
-        container.add(viewPanel);
+        container.add(viewBox);
         container.add(statusBar);
         container.add(controlPanel);
 
         add(container);
     }
 
-    private JPanel createViewPanel() {
-        JPanel viewPanel = new JPanel();
-        viewPanel.setLayout(new FlowLayout());
+    private Box createViewBox() {
+        Box viewBox = Box.createVerticalBox();
 
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
@@ -56,9 +55,21 @@ public class MainWindow extends JFrame {
         Dimension sliderPreferredSize = slider.getPreferredSize();
         slider.setPreferredSize(new Dimension(sliderPreferredSize.width + 100, sliderPreferredSize.height));
 
-        viewPanel.add(slider);
+        JPanel sliderViewPanel = new JPanel();
+        sliderViewPanel.setLayout(new FlowLayout());
+        sliderViewPanel.add(slider);
 
-        return viewPanel;
+        JLabel sliderValueLabel = new JLabel(String.valueOf(slider.getValue()));
+
+        JPanel sliderStatusBar = new JPanel();
+        sliderStatusBar.setLayout(new FlowLayout());
+        sliderStatusBar.add(new JLabel("value:"));
+        sliderStatusBar.add(sliderValueLabel);
+
+        viewBox.add(sliderStatusBar);
+        viewBox.add(sliderViewPanel);
+
+        return viewBox;
     }
 
     private JPanel createStatusBar() {
