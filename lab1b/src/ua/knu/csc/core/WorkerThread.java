@@ -3,7 +3,7 @@ package ua.knu.csc.core;
 import javax.swing.JSlider;
 
 public class WorkerThread extends Thread {
-    private final long THREAD_DELAY = 200000000;
+    private final long THREAD_DELAY = 180000000;
 
     private final BinarySemaphore binarySemaphore;
 
