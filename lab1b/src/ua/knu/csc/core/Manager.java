@@ -3,6 +3,11 @@ package ua.knu.csc.core;
 import javax.swing.*;
 
 public class Manager {
+    private final BinarySemaphore binarySemaphore = new BinarySemaphore();
+
+    private WorkerThread workerThread1;
+    private WorkerThread workerThread2;
+
     private final JSlider slider;
 
     private final JButton buttonStart1;
@@ -10,11 +15,6 @@ public class Manager {
 
     private final JButton buttonStart2;
     private final JButton buttonStop2;
-
-    private final BinarySemaphore binarySemaphore = new BinarySemaphore();
-
-    private WorkerThread workerThread1;
-    private WorkerThread workerThread2;
 
     public Manager(JSlider slider, JButton buttonStart1, JButton buttonStop1, JButton buttonStart2, JButton buttonStop2) {
         if (slider == null || buttonStart1 == null || buttonStop1 == null || buttonStart2 == null || buttonStop2 == null) {
@@ -29,10 +29,10 @@ public class Manager {
         this.buttonStart2 = buttonStart2;
         this.buttonStop2 = buttonStop2;
 
-        addButtonsActionListeners();
+        addActionListenersToButtons();
     }
 
-    private void addButtonsActionListeners() {
+    public void addActionListenersToButtons() {
         buttonStart1.addActionListener(e -> onButtonStart1Click());
         buttonStop1.addActionListener(e -> onButtonStop1Click());
 
