@@ -1,4 +1,4 @@
-package ua.knu.csc.core;
+package ua.knu.csc.core.entity;
 
 import java.util.NoSuchElementException;
 import java.util.Random;

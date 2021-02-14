@@ -1,4 +1,4 @@
-package ua.knu.csc.core;
+package ua.knu.csc.core.entity;
 
 import java.util.List;
 import java.util.ArrayList;

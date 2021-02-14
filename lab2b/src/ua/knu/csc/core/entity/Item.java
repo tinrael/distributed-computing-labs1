@@ -1,4 +1,4 @@
-package ua.knu.csc.core;
+package ua.knu.csc.core.entity;
 
 public class Item {
     private final int cost;
