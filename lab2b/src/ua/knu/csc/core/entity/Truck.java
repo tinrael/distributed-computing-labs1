@@ -22,9 +22,9 @@ public class Truck {
         if (size < capacity){
             items.add(item);
             size++;
+        } else {
+            throw new IllegalStateException("The truck is full.");
         }
-
-        throw new IllegalStateException("The truck is full.");
     }
 
     public boolean isFull() {
