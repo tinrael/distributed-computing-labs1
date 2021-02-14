@@ -1,5 +1,7 @@
 package ua.knu.csc.core;
 
+import ua.knu.csc.core.entity.Item;
+
 import java.util.LinkedList;
 
 public class Storage {
