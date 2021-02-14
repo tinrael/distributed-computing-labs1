@@ -15,6 +15,10 @@ public class Truck {
     }
 
     public void addItem(Item item) {
+        if (item == null) {
+            throw new NullPointerException("The specified item is null.");
+        }
+
         if (size < capacity){
             items.add(item);
             size++;

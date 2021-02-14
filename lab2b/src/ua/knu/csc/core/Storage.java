@@ -9,6 +9,10 @@ public class Storage {
     private final LinkedList<Item> items = new LinkedList<>();
 
     public synchronized void addItem(Item item) throws InterruptedException {
+        if (item == null) {
+            throw new NullPointerException("The specified item is null.");
+        }
+
         while (size == CAPACITY) {
             wait();
         }
