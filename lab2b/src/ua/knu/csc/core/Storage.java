@@ -5,7 +5,7 @@ import ua.knu.csc.core.entity.Item;
 import java.util.LinkedList;
 
 public class Storage {
-    private final int CAPACITY = 10;
+    private final int CAPACITY = 5;
     private int size = 0;
 
     private final LinkedList<Item> items = new LinkedList<>();
@@ -22,6 +22,10 @@ public class Storage {
         items.addLast(item);
         size++;
 
+        System.out.println("[add]: " + Thread.currentThread().getName() + " ADDS an item to the storage.");
+        System.out.println("[add]: Current number of items in the storage: " + size);
+        System.out.println();
+
         notify();
     }
 
@@ -32,6 +36,10 @@ public class Storage {
 
         Item item = items.removeFirst();
         size--;
+
+        System.out.println("[get]: " + Thread.currentThread().getName() + " GETS an item from the storage.");
+        System.out.println("[get]: Current number of items in the storage: " + size);
+        System.out.println();
 
         notify();
 
