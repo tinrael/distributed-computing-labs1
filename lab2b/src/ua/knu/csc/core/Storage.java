@@ -26,7 +26,9 @@ public class Storage {
         System.out.println("[add]: Current number of items in the storage: " + size);
         System.out.println();
 
-        notify();
+        if (size == 1) {
+            notify();
+        }
     }
 
     public synchronized Item getItem() throws InterruptedException {
@@ -41,7 +43,9 @@ public class Storage {
         System.out.println("[get]: Current number of items in the storage: " + size);
         System.out.println();
 
-        notify();
+        if (size == CAPACITY - 1) {
+            notify();
+        }
 
         return item;
     }
