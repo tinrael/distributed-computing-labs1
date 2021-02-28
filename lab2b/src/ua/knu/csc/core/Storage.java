@@ -10,13 +10,16 @@ public class Storage {
 
     private final LinkedList<Item> items = new LinkedList<>();
 
-    public synchronized void addItem(Item item) throws InterruptedException {
-        if (item == null) {
-            throw new NullPointerException("The specified item is null.");
-        }
+    public synchronized void addItem(Item item) {
+        boolean isInterrupted = false;
 
         while (size == CAPACITY) {
-            wait();
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                isInterrupted = true;
+            }
         }
 
         items.addLast(item);
@@ -29,11 +32,22 @@ public class Storage {
         if (size == 1) {
             notify();
         }
+
+        if (isInterrupted) {
+            Thread.currentThread().interrupt();
+        }
     }
 
-    public synchronized Item getItem() throws InterruptedException {
+    public synchronized Item getItem() {
+        boolean isInterrupted = false;
+
         while (size == 0) {
-            wait();
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                isInterrupted = true;
+            }
         }
 
         Item item = items.removeFirst();
@@ -45,6 +59,10 @@ public class Storage {
 
         if (size == CAPACITY - 1) {
             notify();
+        }
+
+        if (isInterrupted) {
+            Thread.currentThread().interrupt();
         }
 
         return item;
