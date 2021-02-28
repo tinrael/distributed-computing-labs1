@@ -13,12 +13,13 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         Storage storage = new Storage();
 
-        // TODO: repair the issue below.
-        // The warehouse's size and truck's capacity must be equal.
-        final int NUMBER_OF_ITEMS = 10;
+        // TODO: repair (?) the issue below.
+        // The truck's capacity must be equal or more than the number of items in the warehouse (warehouse's size).
+        final int NUMBER_OF_ITEMS_IN_WAREHOUSE = 65;
+        final int TRUCK_CAPACITY = 100;
 
-        Warehouse warehouse = new Warehouse(NUMBER_OF_ITEMS);
-        Truck truck = new Truck(NUMBER_OF_ITEMS);
+        Warehouse warehouse = new Warehouse(NUMBER_OF_ITEMS_IN_WAREHOUSE);
+        Truck truck = new Truck(TRUCK_CAPACITY);
 
         Producer producer = new Producer("Producer", storage, warehouse);
         Consumer consumer = new Consumer("Consumer", storage, truck);
