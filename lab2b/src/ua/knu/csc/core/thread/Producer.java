@@ -26,14 +26,12 @@ public class Producer extends Thread {
 
     @Override
     public void run() {
-        try {
-            Item item;
-            while (!isInterrupted() && !warehouse.isEmpty()) {
-                item = warehouse.getItem();
-                storage.addItem(item);
-            }
-        } catch (InterruptedException e){
-            e.printStackTrace();
+        Item item;
+        while (!isInterrupted() && !warehouse.isEmpty()) {
+            item = warehouse.getItem();
+            storage.addItem(item);
         }
+
+        storage.addItem(null);
     }
 }
