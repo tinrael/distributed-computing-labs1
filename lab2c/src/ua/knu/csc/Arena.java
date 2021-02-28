@@ -1,14 +1,16 @@
 package ua.knu.csc;
 
+import ua.knu.csc.entity.Monk;
+
 import java.util.concurrent.RecursiveTask;
 
-public class Arena extends RecursiveTask<Integer> {
-    private final int[] fighters;
+public class Arena extends RecursiveTask<Monk> {
+    private final Monk[] fighters;
 
     private final int start;
     private final int end;
 
-    public Arena(int[] fighters, int start, int end) {
+    public Arena(Monk[] fighters, int start, int end) {
         if (start == end) {
             throw new IllegalArgumentException("No elements in the specified range [start, end).");
         }
@@ -23,21 +25,27 @@ public class Arena extends RecursiveTask<Integer> {
     }
 
     @Override
-    protected Integer compute() {
+    protected Monk compute() {
         int length = end - start;
 
         if (length == 1) {
-            int winner = fighters[start];
+            Monk winner = fighters[start];
 
-            System.out.println("[Arena]: No pair to [" + winner +"]. Winner: [" + winner + "].");
+            System.out.println("Arena: No pair to [" + winner.getStrength() +"]. Winner: [" + winner.getStrength() + "].");
 
             return winner;
         }
 
         if (length == 2) {
-            int winner = Math.max(fighters[start], fighters[start + 1]);
+            Monk winner;
 
-            System.out.println("[Arena]: [" + fighters[start] + "] vs [" + fighters[start + 1] + "]. Winner: [" + winner + "].");
+            if (fighters[start].getStrength() > fighters[start + 1].getStrength()) {
+                winner = fighters[start];
+            } else {
+                winner = fighters[start + 1];
+            }
+
+            System.out.println("Arena: [" + fighters[start].getStrength() + "] vs [" + fighters[start + 1].getStrength() + "]. Winner: [" + winner.getStrength() + "].");
 
             return winner;
         }
@@ -50,12 +58,18 @@ public class Arena extends RecursiveTask<Integer> {
         leftArena.fork();
         rightArena.fork();
 
-        int leftArenaWinner = leftArena.join();
-        int rightArenaWinner = rightArena.join();
+        Monk leftArenaWinner = leftArena.join();
+        Monk rightArenaWinner = rightArena.join();
 
-        int winner = Math.max(leftArenaWinner, rightArenaWinner);
+        Monk winner;
 
-        System.out.println("[Arena]: [" + leftArenaWinner + "] vs [" + rightArenaWinner + "]. Winner: [" + winner + "].");
+        if (leftArenaWinner.getStrength() > rightArenaWinner.getStrength()) {
+            winner = leftArenaWinner;
+        } else {
+            winner = rightArenaWinner;
+        }
+
+        System.out.println("Arena: [" + leftArenaWinner.getStrength() + "] vs [" + rightArenaWinner.getStrength() + "]. Winner: [" + winner.getStrength() + "].");
 
         return winner;
     }
