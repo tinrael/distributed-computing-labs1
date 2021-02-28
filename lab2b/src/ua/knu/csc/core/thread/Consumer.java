@@ -26,14 +26,13 @@ public class Consumer extends Thread {
 
     @Override
     public void run() {
-        try {
-            Item item;
-            while (!isInterrupted() && !truck.isFull()) {
-                item = storage.getItem();
-                truck.addItem(item);
+        Item item;
+        while (!isInterrupted() && !truck.isFull()) {
+            item = storage.getItem();
+            if (item == null) {
+                break;
             }
-        } catch (InterruptedException e){
-            e.printStackTrace();
+            truck.addItem(item);
         }
     }
 }
