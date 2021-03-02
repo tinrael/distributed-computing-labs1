@@ -22,6 +22,8 @@ public class Truck {
         if (size < capacity){
             items.add(item);
             size++;
+
+            System.out.println("[Truck]: " + Thread.currentThread().getName() + " added an item " + item + " to the truck.\n");
         } else {
             throw new IllegalStateException("The truck is full.");
         }
