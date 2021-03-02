@@ -10,6 +10,7 @@ public class Storage {
 
     private final LinkedList<Item> items = new LinkedList<>();
 
+    // This method guarantees that an item will be added, even if the thread is interrupted.
     public synchronized void addItem(Item item) {
         boolean isInterrupted = false;
 
@@ -38,6 +39,7 @@ public class Storage {
         }
     }
 
+    // This method guarantees that an item will be got, even if the thread is interrupted.
     public synchronized Item getItem() {
         boolean isInterrupted = false;
 
