@@ -23,9 +23,9 @@ public class Main {
         Warehouse warehouse = new Warehouse(NUMBER_OF_ITEMS_IN_WAREHOUSE);
         Truck truck = new Truck(TRUCK_CAPACITY);
 
-        Producer producer = new Producer("Producer", storage1, warehouse);
-        Middleman middleman = new Middleman("Middleman", storage1, storage2);
-        Consumer consumer = new Consumer("Consumer", storage2, truck);
+        Producer producer = new Producer("Ivanov", storage1, warehouse);
+        Middleman middleman = new Middleman("Petrov", storage1, storage2);
+        Consumer consumer = new Consumer("Nechyporchuk", storage2, truck);
 
         System.out.println("Number of items in the WAREHOUSE: " + warehouse.getSize());
         System.out.println("Number of items in the TRUCK: " + truck.getSize());
