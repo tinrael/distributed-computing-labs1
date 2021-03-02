@@ -5,10 +5,20 @@ import ua.knu.csc.core.entity.Item;
 import java.util.LinkedList;
 
 public class Storage {
+    private final String name;
+
     private final int CAPACITY = 5;
     private int size = 0;
 
     private final LinkedList<Item> items = new LinkedList<>();
+
+    public Storage(String name) {
+        if (name == null) {
+            throw new NullPointerException("The specified name is null.");
+        }
+
+        this.name = name;
+    }
 
     // This method guarantees that an item will be added, even if the thread is interrupted.
     public synchronized void addItem(Item item) {
@@ -26,9 +36,8 @@ public class Storage {
         items.addLast(item);
         size++;
 
-        System.out.println("[add]: " + Thread.currentThread().getName() + " ADDS an item to the storage.");
-        System.out.println("[add]: Current number of items in the storage: " + size);
-        System.out.println();
+        System.out.println("[Storage]: " + Thread.currentThread().getName() + " added an item " + item + " to the storage " + name + ".\n"
+                + "[Storage]: Current number of items in the storage " + name + ": " + size + ".\n");
 
         if (size == 1) {
             notify();
@@ -55,9 +64,8 @@ public class Storage {
         Item item = items.removeFirst();
         size--;
 
-        System.out.println("[get]: " + Thread.currentThread().getName() + " GETS an item from the storage.");
-        System.out.println("[get]: Current number of items in the storage: " + size);
-        System.out.println();
+        System.out.println("[Storage]: " + Thread.currentThread().getName() + " got an item " + item + " from the storage " + name + ".\n"
+                + "[Storage]: Current number of items in the storage " + name + ": " + size + ".\n");
 
         if (size == CAPACITY - 1) {
             notify();
@@ -68,5 +76,12 @@ public class Storage {
         }
 
         return item;
+    }
+
+    /* final fields, which cannot be modified after the object is constructed,
+     * can be safely read through non-synchronized methods, once the object is constructed.
+     */
+    public String getName() {
+        return name;
     }
 }
