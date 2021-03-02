@@ -12,8 +12,8 @@ import ua.knu.csc.core.thread.Producer;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        Storage storage1 = new Storage("[producer - middleman]");
-        Storage storage2 = new Storage("[middleman - consumer]");
+        Storage storage1 = new Storage("[Ivanov - Petrov]");
+        Storage storage2 = new Storage("[Petrov - Nechyporchuk]");
 
         // TODO: repair (?) the issue below.
         // The truck's capacity must be equal or more than the number of items in the warehouse (warehouse's size).
@@ -39,6 +39,6 @@ public class Main {
         middleman.join();
         consumer.join();
 
-        System.out.println("Number of items in the TRUCK: " + truck.getSize());
+        System.out.println("Number of items in the TRUCK: " + truck.getSize() + ".");
     }
 }
