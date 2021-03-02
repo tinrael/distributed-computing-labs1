@@ -16,7 +16,10 @@ public class Warehouse {
         if (size > 0) {
             size--;
 
-            return new Item(random.nextInt());
+            Item item = new Item("item", 5);
+            System.out.println("[Warehouse]: " + Thread.currentThread().getName() + " got an item " + item + " from the warehouse.\n");
+
+            return item;
         }
 
         throw new NoSuchElementException("The warehouse is empty.");
