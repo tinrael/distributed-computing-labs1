@@ -26,13 +26,22 @@ public class Consumer extends Thread {
 
     @Override
     public void run() {
+        int totalCost = 0;
+
         Item item;
         while (!isInterrupted() && !truck.isFull()) {
             item = storage.getItem();
             if (item == null) {
                 break;
             }
+
+            totalCost += item.getCost();
+            System.out.println("[Counter]: " + Thread.currentThread().getName() + " counted an item " + item + ".\n"
+                    + "[Counter]: The current total cost is " + totalCost + ".\n");
+
             truck.addItem(item);
         }
+
+        System.out.println("The total cost is " + totalCost + ".\n");
     }
 }
