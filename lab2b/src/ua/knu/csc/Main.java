@@ -17,7 +17,7 @@ public class Main {
 
         // TODO: repair (?) the issue below.
         // The truck's capacity must be equal or more than the number of items in the warehouse (warehouse's size).
-        final int NUMBER_OF_ITEMS_IN_WAREHOUSE = 70;
+        final int NUMBER_OF_ITEMS_IN_WAREHOUSE = 70; // in this example the total cost is expected to be 2485
         final int TRUCK_CAPACITY = 100;
 
         Warehouse warehouse = new Warehouse(NUMBER_OF_ITEMS_IN_WAREHOUSE);
