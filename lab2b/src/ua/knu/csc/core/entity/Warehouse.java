@@ -1,11 +1,8 @@
 package ua.knu.csc.core.entity;
 
 import java.util.NoSuchElementException;
-import java.util.Random;
 
 public class Warehouse {
-    private final Random random = new Random();
-
     private int size;
 
     public Warehouse(int size) {
