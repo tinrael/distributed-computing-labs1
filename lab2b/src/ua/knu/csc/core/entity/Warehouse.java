@@ -14,9 +14,9 @@ public class Warehouse {
 
     public Item getItem() {
         if (size > 0) {
+            Item item = new Item("item" + size, size);
             size--;
 
-            Item item = new Item("item", 5);
             System.out.println("[Warehouse]: " + Thread.currentThread().getName() + " got an item " + item + " from the warehouse.\n");
 
             return item;
