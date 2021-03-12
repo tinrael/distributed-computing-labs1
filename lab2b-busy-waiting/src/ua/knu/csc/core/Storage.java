@@ -1,7 +1,6 @@
 package ua.knu.csc.core;
 
 import ua.knu.csc.core.entity.Item;
-
 import java.util.LinkedList;
 
 public class Storage {
@@ -36,6 +35,14 @@ public class Storage {
                 + "[Storage]: Current number of items in the storage " + name + ": " + size + ".\n");
 
         return item;
+    }
+
+    public boolean isFull() {
+        return size == CAPACITY;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     public String getName() {
