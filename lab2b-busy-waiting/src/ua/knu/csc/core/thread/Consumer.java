@@ -49,6 +49,10 @@ public class Consumer extends Thread {
         this.turn = turn;
     }
 
+    /* Peterson's solution is implemented below.
+     * Peterson's solution meets CS (critical sections) requirements and only works if assignments are atomic.
+     * Peterson's solution has poor performance.
+     */
     @Override
     public void run() {
         int totalCost = 0;
